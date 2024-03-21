@@ -16,7 +16,7 @@ async function createShortUrl(req, res) {
     // checking if original url is already present
     const urlDoc = await Url.findOne({ url });
     if (urlDoc) {
-      const shortUrl = `${clientUrl}/${urlDoc.shortUrlId}`;
+      const shortUrl = `https://urlshort-lt6a.onrender.com/${urlDoc.shortUrlId}`;
       res.status(200).json({ shortUrl: shortUrl, clicks: urlDoc.clicks });
       console.log("Url already present", shortUrl);
       return;
