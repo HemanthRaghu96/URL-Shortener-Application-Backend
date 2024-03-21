@@ -54,7 +54,7 @@ async function redirectToOriginalUrl(req, res) {
     // $inc increase the clicks by 1
     await Url.findByIdAndUpdate(urlDoc._id, { $inc: { clicks: 1 } });
     // redirect to the original url 
-    return res.status(200).redirect(urlDoc.url);
+    return res.status(200).send('Redirected').redirect(urlDoc.url);
   } catch (err) {
     console.log(err);
     res.status(500).json("Server Error", err.message);
