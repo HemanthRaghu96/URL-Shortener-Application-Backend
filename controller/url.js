@@ -44,7 +44,7 @@ async function redirectToOriginalUrl(req, res) {
   const { shortUrlId } = req.params;
 
   try {
-    const urlDoc = await Url.findOne({ shortUrlId });
+    const urlDoc = await Url.findOne({ shortUrlId:shortUrlId });
     // checking if short url is present
     if (urlDoc === null) {
       res.status(404).json({ message: "No Url found" });
@@ -53,7 +53,7 @@ async function redirectToOriginalUrl(req, res) {
 
     // $inc increase the clicks by 1
     await Url.findByIdAndUpdate(urlDoc._id, { $inc: { clicks: 1 } });
-    // redirect to the original url
+    // redirect to the original url 
     return res.status(200).redirect(urlDoc.url);
   } catch (err) {
     console.log(err);
